@@ -96,13 +96,13 @@ export default {
     'october':'Oktober',
     'november':'November',
     'december':'Dezember',
-    'su':'Sonntag',
-    'mo':'Montag',
-    'tu':'Dienstag',
-    'we':'Mittwoch',
-    'th':'Donnerstag',
-    'fr':'Freitag',
-    'sa':'Samstag'
+    'su':'So',
+    'mo':'Mo',
+    'tu':'Di',
+    'we':'Mi',
+    'th':'Do',
+    'fr':'Fr',
+    'sa':'Sa'
   },
   'ko' : { // Korean
     'january':'1월',

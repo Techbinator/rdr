@@ -77,3 +77,7 @@ class MyComponent extends Component {
 }
 
 ```
+
+## TODO
+remove react dependency
+add typescript

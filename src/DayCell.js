@@ -97,13 +97,13 @@ class DayCell extends Component {
   }
 
   render() {
-    const { dayMoment, onlyClasses, classNames } = this.props;
+    const { dayMoment, onlyClasses, classNames, isPassive, isStartEdge, isEndEdge, } = this.props;
 
     const { styles } = this;
     const stateStyle = this.getStateStyles();
     const classes    = this.getClassNames(classNames);
     const dayWrapperStyles = {
-      width: styles['Day'].width,
+      width:  styles['Day'].width,
       height: styles['Day'].height,
       display: styles['Day'].display
     };

@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@types/moment-timezone@*":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@types/moment-timezone/-/moment-timezone-0.5.3.tgz#66aecb4e8291c2bcf4fad9bfd51367c1edbd80c6"
+  dependencies:
+    moment ">=2.14.0"
+
+"@types/react@*":
+  version "16.0.35"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.35.tgz#7ce8a83cad9690fd965551fc513217a74fc9e079"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1005,7 +1015,7 @@ minimist@^1.1.0, minimist@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.19.4:
+moment@>=2.14.0, moment@^2.19.4:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 

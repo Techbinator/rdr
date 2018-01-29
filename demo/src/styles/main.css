@@ -1,5 +1,4 @@
 :local(.Main) {
-  width: 800px;
   margin: 40px auto;
 }
 
@@ -22,7 +21,6 @@
 }
 
 :local(.Demo-description) {
-  float : left;
   width: 240px;
 }
 
@@ -32,8 +30,7 @@
 }
 
 :local(.Demo) {
-  width: 560px;
-  float: left;
+  width: 100%;
 }
 
 :local(.Demo-inputs) input {

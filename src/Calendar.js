@@ -201,11 +201,15 @@ class Calendar extends Component {
     }
 
     // Next month's days
-    const remainingCells = 42 - days.length; // 42cells = 7days * 6rows
-    for (let i = 1; i <= remainingCells; i++ ) {
-      const dayMoment  = nextMonth.clone().date(i);
-      days.push({ dayMoment, isPassive : true });
+    if(this.props.passiveDays){
+      const remainingCells = 42 - days.length; // 42cells = 7days * 6rows
+      for (let i = 1; i <= remainingCells; i++ ) {
+        const dayMoment  = nextMonth.clone().date(i);
+        days.push({ dayMoment, isPassive : true });
+      }
     }
+
+
 
     const today = moment().startOf('day');
     return days.map((data, index) => {
@@ -267,6 +271,7 @@ Calendar.defaultProps = {
   onlyClasses : false,
   classNames  : {},
   specialDays : [],
+  passiveDays : false
 }
 
 Calendar.propTypes = {
@@ -294,7 +299,8 @@ Calendar.propTypes = {
   onlyClasses    : PropTypes.bool,
   specialDays    : PropTypes.array,
   classNames     : PropTypes.object,
-  locale         : PropTypes.string
+  locale         : PropTypes.string,
+  passiveDays    : PropTypes.bool,
 }
 
 export default Calendar;

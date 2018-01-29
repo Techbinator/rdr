@@ -24,21 +24,21 @@ export const defaultClasses = {
 
 const defaultTheme = {
   DateRange : {
-    display       : 'block',
+    display       : 'inline-block',
     boxSizing     : 'border-box',
     background    : '#ffffff',
     borderRadius  : '2px',
   },
 
   Calendar        : {
-    width         : 280,
+    width         : 330,
     padding       : 10,
     background    : '#ffffff',
     borderRadius  : '2px',
     display       : 'inline-block',
     boxSizing     : 'border-box',
     letterSpacing : 0,
-    color         : '#000000',
+    color         : '#333',
   },
 
   Day : {
@@ -46,18 +46,19 @@ const defaultTheme = {
     display       : 'inline-block',
     letterSpacing : 'initial',
     textAlign     : 'center',
-    fontSize      : 12,
+    fontSize      : 11,
     cursor        : 'pointer',
     transition    : 'transform .1s ease',
+    background    : '#dfe2e6',
+    border        : '1px solid #fff'
   },
 
   DayPassive : {
-    opacity       : 0.4,
-    cursor        : 'normal'
+    opacity       : 0,
+    cursor        : 'auto',
   },
 
   DayHover : {
-    background    : '#bdc3c7',
   },
 
   DayToday : {
@@ -76,8 +77,8 @@ const defaultTheme = {
   },
 
   DaySelected : {
-    background    : '#e74c3c',
-    color         : '#ffffff',
+    background    : 'transparent',
+    color         : '#333',
   },
 
   DayStartEdge : {
@@ -87,8 +88,8 @@ const defaultTheme = {
   },
 
   DayInRange : {
-    background    : '#34495e',
-    color         : '#95a5a6',
+    background    : '#fae896',
+    color         : '#333',
   },
 
   Weekday : {
