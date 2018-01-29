@@ -157,6 +157,7 @@ class DateRange extends Component {
 		            specialDays={ specialDays }
                 passiveDays= {passiveDays}
                 classNames={ classes }
+                calendars={calendars}
                 onChange={ this.handleSelect.bind(this) }  />
             );
           }
@@ -168,7 +169,7 @@ class DateRange extends Component {
 }
 
 DateRange.defaultProps = {
-  linkedCalendars : false,
+  linkedCalendars : true,
   theme           : {},
   format          : 'DD/MM/YYYY',
   calendars       : 2,
@@ -176,8 +177,8 @@ DateRange.defaultProps = {
   offsetPositive  : false,
   classNames      : {dayStartEdge: 'startEdge', dayEndEdge: 'endEdge'},
   specialDays     : [],
-  rangedCalendars : false,
-  twoStepChange   : false,
+  rangedCalendars : true,
+  twoStepChange   : true,
   passiveDays     : false,
 }
 

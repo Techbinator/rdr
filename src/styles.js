@@ -97,9 +97,9 @@ const defaultTheme = {
     display       : 'inline-block',
     letterSpacing : 'initial',
     textAlign     : 'center',
-    fontSize      : 12,
-    fontWeight    : '600',
-    marginBottom  : 1
+    fontSize      : 11,
+    fontWeight    : '100',
+    marginBottom  : 10
   },
 
   MonthAndYear : {
@@ -119,7 +119,7 @@ const defaultTheme = {
     padding       : 0,
     margin        : '0 10px',
     border        : 'none',
-    background    : '#bdc3c7',
+    background    : 'transparent',
     boxShadow     : 'none',
     outline       : 'none',
     borderRadius  : '50%',

@@ -20,6 +20,7 @@ export default class Main extends Component {
       'datePickerInternational': null,
       'firstDayOfWeek' : null,
       'predefined' : {},
+      'mobile': false
     }
   }
 
@@ -41,7 +42,6 @@ export default class Main extends Component {
     } = this.state;
 
     const format = 'dddd, D MMMM YYYY';
-
     return (
       <main className={styles['Main']}>
 
@@ -59,20 +59,26 @@ export default class Main extends Component {
               readOnly
               value={ rangePicker['endDate'] && rangePicker['endDate'].format(format).toString() }
             />
+          <button onClick={() => this.setState({mobile: !this.state.mobile})} style={{fontSize: 20, margin: 20}}>Mobile On/Off</button>
           </div>
 
+
+
           <DateRange
-            startDate='10/11/2018'
+            startDate='10/02/2018'
             endDate={ () => {
-              return '11/12/2018';
+              return '11/03/2018';
             }}
+            minDate='05/02/2018'
+            maxDate='05/10/2018'
             onInit={ this.handleChange.bind(this, 'rangePicker') }
             onChange={ this.handleChange.bind(this, 'rangePicker') }
-            offsetPositive
-            linkedCalendars={ true }
+            linkedCalendars={ !this.state.mobile }
             disableDaysBeforeToday={true}
             firstDayOfWeek={1}
             lang="de"
+            rangedCalendars={true}
+            calendars={this.state.mobile ? 1 : 2}
           />
         </Section>
       </main>

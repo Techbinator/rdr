@@ -103,24 +103,49 @@ class Calendar extends Component {
 
   renderMonthAndYear(classes) {
     const shownDate       = this.getShownDate();
-    let month           = moment.months(shownDate.month());
+    let month             = moment.months(shownDate.month());
     const year            = shownDate.year();
     const { styles }      = this;
-    const { onlyClasses, lang, showMonthArrow} = this.props;
+    const { onlyClasses, lang, showMonthArrow, format, minDate, maxDate, calendars, offset } = this.props;
+    let showPrevArrow    = showMonthArrow;
+    let showNextValue    = showMonthArrow;
 
+    //is mobile
+    if(calendars > 1){
+      if(offset == -1){
+        showNextValue = false;
+      }
+      if(offset == -0){
+        showPrevArrow = false;
+      }
+    }
+
+    if(minDate) {
+      const minDateR = moment(minDate, format);
+      if(shownDate.subtract(1, 'months').diff(minDateR) < 0){
+        showPrevArrow = false;
+      }
+    }
+
+    if(maxDate) {
+      const maxDateR = moment(maxDate, format);
+      if(shownDate.add(1, 'months').diff(maxDateR) > 0){
+        showNextValue = false;
+      }
+    }
     const monthLower = month.toLowerCase()
     month = (lang && LangDic[lang] && LangDic[lang][monthLower]) ? LangDic[lang][monthLower] : month;
 
     return (
       <div style={onlyClasses ? undefined : styles['MonthAndYear']} className={classes.monthAndYearWrapper}>
         {
-          showMonthArrow ?
+          showPrevArrow ?
           <button
             type="button"
             style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'left' }}
             className={classes.prevButton}
             onClick={this.changeMonth.bind(this, -1)}>
-            <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowPrev'] }}></i>
+            &lsaquo;
           </button> : null
         }
         <span>
@@ -129,13 +154,13 @@ class Calendar extends Component {
           <span className={classes.year}>{year}</span>
         </span>
         {
-          showMonthArrow ?
+          showNextValue ?
           <button
             type="button"
             style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'right' }}
             className={classes.nextButton}
             onClick={this.changeMonth.bind(this, +1)}>
-            <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowNext'] }}></i>
+            &rsaquo;
           </button> : null
         }
       </div>
@@ -153,7 +178,7 @@ class Calendar extends Component {
       const dayLower = day.toLowerCase();
       day = (lang && LangDic[lang] && LangDic[lang][dayLower]) ? LangDic[lang][dayLower] : day;
       weekdays.push(
-        <span style={onlyClasses ? undefined : styles['Weekday']} className={classes.weekDay} key={i + day}>{day}</span>
+        <span style={onlyClasses ? undefined : styles['Weekday']} className={classes.weekDay} key={i + day}><span className='innerWeekDay'>{day}</span></span>
       );
     }
 
@@ -271,7 +296,9 @@ Calendar.defaultProps = {
   onlyClasses : false,
   classNames  : {},
   specialDays : [],
-  passiveDays : false
+  passiveDays : false,
+  minDate     : '',
+  maxDate     : '',
 }
 
 Calendar.propTypes = {
@@ -301,6 +328,7 @@ Calendar.propTypes = {
   classNames     : PropTypes.object,
   locale         : PropTypes.string,
   passiveDays    : PropTypes.bool,
+  calendars       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Calendar;
