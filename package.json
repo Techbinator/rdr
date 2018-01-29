@@ -1,7 +1,7 @@
 {
-  "name": "react-date-range",
-  "version": "0.9.4",
-  "description": "A React component for choosing dates and date ranges.",
+  "name": "hc-rdr",
+  "version": "1.0.2",
+  "description": "React date",
   "main": "lib/index.js",
   "scripts": {
     "start-dev": "babel ./src --watch --out-dir ./lib & cd demo && npm install && npm run start-dev",
@@ -16,19 +16,20 @@
     "datepicker",
     "rangepicker"
   ],
-  "author": "Burak Can <neoberg@gmail.com>",
+  "author": "Tudor Filipovici <tudor.filipovici@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Adphorus/react-date-range"
+    "url": "https://github.com/filtudo/rdr"
   },
   "bugs": {
-    "url": "http://github.com/Adphorus/react-date-range/issues"
+    "url": "https://github.com/filtudo/rdr/issues"
   },
   "dependencies": {
     "classnames": "^2.2.1",
     "moment": "^2.19.4",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react": "^16.2.0"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || ^15.0 || ^16.0"
