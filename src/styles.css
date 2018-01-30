@@ -1,0 +1,160 @@
+.rdr-DateRange {
+  display: block;
+  box-sizing: border-box;
+  white-space: nowrap;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 0 1em;
+}
+.rdr-DateRange .rdr-Calendar {
+  box-shadow: none;
+}
+
+.rdr-Calendar {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 280px;
+  padding: 10px;
+  white-space: normal;
+  letter-spacing: 0;
+  color: #000000;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 0 1em;
+  vertical-align: top;
+}
+
+.rdr-MonthAndYear-innerWrapper {
+  font-size: 12px;
+  line-height: 18px;
+  box-sizing: border-box;
+  height: 38px;
+  padding: 10px 0;
+  text-align: center;
+  user-select: none;
+  border-bottom: 1px solid #c2c7cc;
+  margin-bottom: 10px;
+}
+
+.rdr-header {
+  text-align: center;
+  background: #fae896;
+  width: 100%;
+  left: 0;
+  font-weight: 400;
+  position: relative;
+  font-size: 14px;
+  padding: 11px;
+}
+.rdr-header.rdr-selected-header {
+  background: #d4f0ce;
+}
+
+.rdr-MonthAndYear-button {
+  display: block;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  margin: 0 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  outline: none;
+  background: #bdc3c7;
+  box-shadow: none;
+  font-size: 35px;
+  font-weight: 100;
+  color: #0058a3;
+}
+.rdr-MonthAndYear-button:hover {
+  color: #51a9e0;
+}
+.rdr-MonthAndYear-button i {
+  display: block;
+  width: 0;
+  height: 0;
+  padding: 0;
+  text-align: center;
+  border-style: solid;
+}
+.rdr-MonthAndYear-button.prev {
+  float: left;
+}
+.rdr-MonthAndYear-button.prev i {
+  margin: 0 0 0 1px;
+  border-width: 4px 6px 4px 4px;
+  border-color: transparent #34495e transparent transparent;
+}
+.rdr-MonthAndYear-button.next {
+  float: right;
+}
+.rdr-MonthAndYear-button.next i {
+  margin: 0 0 0 7px;
+  border-width: 4px 4px 4px 6px;
+  border-color: transparent transparent transparent #34495e;
+}
+
+.rdr-WeekDay {
+  font-size: 12px;
+  font-weight: 100;
+  line-height: 18.07143px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 36.14286px;
+  height: 18.07143px;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: initial;
+}
+.rdr-WeekDay .innerWeekDay {
+  border-bottom: 1px dotted;
+}
+
+.rdr-Day {
+  font-size: 12px;
+  line-height: 36.14286px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 36.14286px;
+  height: 36.14286px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  text-align: center;
+  letter-spacing: initial;
+}
+.rdr-Day.is-passive {
+  cursor: normal;
+  opacity: 0.4;
+}
+.rdr-Day.is-selected {
+  color: #ffffff;
+  background: #e74c3c;
+  position: relative;
+  z-index: 1;
+}
+.rdr-Day.is-selected.startEdge::before, .rdr-Day.is-selected.endEdge::before {
+  z-index: -1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #fae896;
+  right: 0;
+}
+.rdr-Day.is-selected.endEdge::before {
+  border-radius: 0 20px 20px 0;
+  right: 2px;
+  left: 0;
+}
+.rdr-Day.is-selected.startEdge::before {
+  border-radius: 20px 0 0 20px;
+  left: 2px;
+}
+.rdr-Day.is-inRange {
+  color: #ffffff;
+  background: #34495e;
+}
+.rdr-Day:hover:not(.is-selected) {
+  background: #bdc3c7;
+}
