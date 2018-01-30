@@ -150,9 +150,10 @@ class DateRange extends Component {
           const _calendars = [];
           const _method = offsetPositive ? 'unshift' : 'push';
           for (let i = calendarsCount; i >= 0; i--) {
-            const offset = offsetPositive ? i : -i;
-            const realDiff = offsetPositive ? diff : -diff;
-            const realOffset = (rangedCalendars && i == calendarsCount && diff != 0) ? realDiff : offset;
+            // const offset = offsetPositive ? i : -i;
+            // const realDiff = offsetPositive ? diff : -diff;
+            // const realOffset = (rangedCalendars && i == calendarsCount && diff != 0) ? realDiff : offset;
+            const realOffset = -i;
 
             _calendars[_method](
               <Calendar
