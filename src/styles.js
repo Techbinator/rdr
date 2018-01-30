@@ -108,7 +108,7 @@ const defaultTheme = {
     fontSize      : 12,
     padding       : '10px 0',
     height        : 38,
-    lineHeight    : '18px'
+    lineHeight    : '14px'
   },
 
   MonthButton : {
@@ -116,8 +116,7 @@ const defaultTheme = {
     boxSizing     : 'border-box',
     height        : 18,
     width         : 18,
-    padding       : 0,
-    margin        : '0 10px',
+    margin        : '-5px 0 0',
     border        : 'none',
     background    : 'transparent',
     boxShadow     : 'none',

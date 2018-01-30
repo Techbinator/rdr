@@ -46,6 +46,22 @@ $calendar-shadow: rgba($calendar-color, 0.25) 0 0 1em !default;
     padding: 10px 0;
     text-align: center;
     user-select: none;
+    border-bottom: 1px solid #c2c7cc;
+    margin-bottom: 10px;
+}
+
+.rdr-header{
+    text-align: center;
+    background: #fae896;
+    width: 100%;
+    left: 0;
+    font-weight: 400;
+    position: relative;
+    font-size: 14px;
+    padding: 11px;
+    &.rdr-selected-header{
+      background: #d4f0ce;
+    }
 }
 
 .rdr-MonthAndYear-button {
@@ -107,7 +123,7 @@ $calendar-shadow: rgba($calendar-color, 0.25) 0 0 1em !default;
     height: $cell-size / 2;
     margin-bottom: 10px;
     text-align: center;
-    letter-spacing: initial;  
+    letter-spacing: initial;
     .innerWeekDay{
       border-bottom: 1px dotted;
     }

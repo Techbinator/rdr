@@ -4,6 +4,7 @@ import parseInput from './utils/parseInput.js';
 import Calendar from './Calendar.js';
 import PredefinedRanges from './PredefinedRanges.js';
 import getTheme, { defaultClasses } from './styles.js';
+import moment from 'moment';
 
 class DateRange extends Component {
 
@@ -105,6 +106,21 @@ class DateRange extends Component {
     }
   }
 
+  renderHeader() {
+    const { startDate, endDate } = this.state.range;
+    let text = 'Bitte wählen Sie Ihren spätesten Rückflug aus.';
+    let classNames = 'rdr-header';
+    if(!startDate.isSame(endDate)){
+      text = `${moment(startDate).format('dd., DD.MM.YY')} - ${moment(endDate).format('dd., DD.MM.YY')}`;
+      classNames += ' rdr-selected-header';
+    }
+    return (
+      <div className={classNames}>
+        {text}
+      </div>
+    );
+  }
+
   render() {
     const { ranges, format, linkedCalendars, style, calendars, firstDayOfWeek, minDate, maxDate, classNames, onlyClasses, specialDays, lang, disableDaysBeforeToday, offsetPositive, shownDate, showMonthArrow, rangedCalendars, passiveDays } = this.props;
     const { range, link } = this.state;
@@ -118,6 +134,7 @@ class DateRange extends Component {
 
     return (
       <div style={onlyClasses ? undefined : { ...styles['DateRange'], ...style }} className={classes.dateRange}>
+        {this.props.showHeader && this.renderHeader()}
         { ranges && (
           <PredefinedRanges
             format={ format }
@@ -144,6 +161,7 @@ class DateRange extends Component {
                 disableDaysBeforeToday={ disableDaysBeforeToday }
                 lang={ lang }
                 key={i}
+                id={i}
                 offset={ realOffset }
                 link={ linkedCalendars && link }
                 linkCB={ this.handleLinkChange.bind(this) }
@@ -180,6 +198,7 @@ DateRange.defaultProps = {
   rangedCalendars : true,
   twoStepChange   : true,
   passiveDays     : false,
+  showHeader      : true
 }
 
 DateRange.propTypes = {
@@ -203,6 +222,7 @@ DateRange.propTypes = {
   classNames      : PropTypes.object,
   rangedCalendars : PropTypes.bool,
   passiveDays     : PropTypes.bool,
+  showHeader      : PropTypes.bool,
 }
 
 export default DateRange;

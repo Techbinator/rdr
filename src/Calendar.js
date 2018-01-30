@@ -106,16 +106,16 @@ class Calendar extends Component {
     let month             = moment.months(shownDate.month());
     const year            = shownDate.year();
     const { styles }      = this;
-    const { onlyClasses, lang, showMonthArrow, format, minDate, maxDate, calendars, offset } = this.props;
+    const { onlyClasses, lang, showMonthArrow, format, minDate, maxDate, calendars, id } = this.props;
     let showPrevArrow    = showMonthArrow;
     let showNextValue    = showMonthArrow;
 
     //is mobile
     if(calendars > 1){
-      if(offset == -1){
+      if(id == 1){
         showNextValue = false;
       }
-      if(offset == -0){
+      if(id == 0){
         showPrevArrow = false;
       }
     }
@@ -328,7 +328,8 @@ Calendar.propTypes = {
   classNames     : PropTypes.object,
   locale         : PropTypes.string,
   passiveDays    : PropTypes.bool,
-  calendars       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  calendars      : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  id             : PropTypes.number,
 }
 
 export default Calendar;
