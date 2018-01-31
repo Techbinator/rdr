@@ -51,7 +51,6 @@ class Calendar extends Component {
     }
 
     this.state  = state;
-    this.styles = getTheme(theme);
   }
 
   componentDidMount() {
@@ -105,8 +104,9 @@ class Calendar extends Component {
     const shownDate       = this.getShownDate();
     let month             = moment.months(shownDate.month());
     const year            = shownDate.year();
-    const { styles }      = this;
-    const { onlyClasses, lang, showMonthArrow, format, minDate, maxDate, calendars, id } = this.props;
+
+    const { onlyClasses, lang, showMonthArrow, format, minDate, maxDate, calendars, id, theme } = this.props;
+    const styles         = theme;
     let showPrevArrow    = showMonthArrow;
     let showNextValue    = showMonthArrow;
 
@@ -170,8 +170,9 @@ class Calendar extends Component {
   renderWeekdays(classes) {
     const dow             = this.state.firstDayOfWeek;
     const weekdays        = [];
-    const { styles }      = this;
-    const { onlyClasses, lang } = this.props;
+
+    const { onlyClasses, lang, theme } = this.props;
+    const styles          = theme;
 
     for (let i = dow; i < 7 + dow; i++) {
       let day = moment.weekdaysMin(i);
@@ -187,9 +188,11 @@ class Calendar extends Component {
 
   renderDays(classes) {
     // TODO: Split this logic into smaller chunks
-    const { styles }               = this;
 
-    const { range, minDate, maxDate, format, onlyClasses, disableDaysBeforeToday, specialDays } = this.props;
+
+    const { range, minDate, maxDate, format, onlyClasses, disableDaysBeforeToday, specialDays, theme } = this.props;
+
+    const styles                   = theme;
 
     const shownDate                = this.getShownDate();
     const { date, firstDayOfWeek } = this.state;
@@ -273,9 +276,9 @@ class Calendar extends Component {
   }
 
   render() {
-    const { styles } = this;
-    const { onlyClasses, classNames } = this.props;
 
+    const { onlyClasses, classNames, theme } = this.props;
+    const styles  = theme;
     const classes = { ...defaultClasses, ...classNames };
 
     return (

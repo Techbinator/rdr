@@ -12,7 +12,6 @@ class DayCell extends Component {
       active    : false
     }
 
-    this.styles = this.props.theme;
   }
 
   handleMouseEvent(event) {
@@ -51,8 +50,8 @@ class DayCell extends Component {
 
   getStateStyles() {
     const { hover, active } = this.state;
-    const { isSelected, isInRange, isPassive, isStartEdge, isEndEdge, isToday, isSunday, isSpecialDay } = this.props;
-    const { styles } = this;
+    const { isSelected, isInRange, isPassive, isStartEdge, isEndEdge, isToday, isSunday, isSpecialDay, theme } = this.props;
+    const styles  = theme;
 
     const hoverStyle    = hover ? styles['DayHover'] : {};
     const activeStyle   = active ? styles['DayActive'] : {};
@@ -97,9 +96,9 @@ class DayCell extends Component {
   }
 
   render() {
-    const { dayMoment, onlyClasses, classNames, isPassive, isStartEdge, isEndEdge, } = this.props;
+    const { dayMoment, onlyClasses, classNames, isPassive, isStartEdge, isEndEdge, theme } = this.props;
 
-    const { styles } = this;
+    const styles  = theme;
     const stateStyle = this.getStateStyles();
     const classes    = this.getClassNames(classNames);
     const dayWrapperStyles = {

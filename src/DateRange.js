@@ -11,7 +11,7 @@ class DateRange extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const { format, linkedCalendars, theme } = props;
+    const { format, linkedCalendars, theme, calendars } = props;
 
     const startDate = parseInput(props.startDate, format, 'startOf');
     const endDate   = parseInput(props.endDate, format, 'endOf');
@@ -19,15 +19,45 @@ class DateRange extends Component {
     this.state = {
       range     : { startDate, endDate },
       link      : linkedCalendars && endDate,
+      styles    : this.getStyles(theme, calendars == 1)
     }
 
     this.step = 0;
-    this.styles = getTheme(theme);
   }
+
+  getStyles(theme, isMobile){
+
+    if(isMobile && window){
+      return getTheme({
+        ...theme,
+        Calendar: {
+          width: window.innerWidth - 50
+        }
+      });
+
+    } else {
+      return getTheme(theme);
+    }
+
+  }
+
+  handleResize(e) {
+    // if is mobile
+    if(this.props.calendars == 1){
+      this.setState({
+        styles: this.getStyles(this.props.theme, true)
+      });
+    }
+  }
+
+   componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+   }
 
   componentDidMount() {
     const { onInit } = this.props;
     onInit && onInit(this.state.range);
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   orderRange(range) {
@@ -127,7 +157,7 @@ class DateRange extends Component {
   }
 
   renderFooter(){
-    if(!this.rangeSelected()){
+    if(!this.rangeSelected() && this.props.calendars > 1){
       return null;
     }
     return (
@@ -139,8 +169,7 @@ class DateRange extends Component {
 
   render() {
     const { ranges, format, linkedCalendars, style, calendars, firstDayOfWeek, minDate, maxDate, classNames, onlyClasses, specialDays, lang, disableDaysBeforeToday, offsetPositive, shownDate, showMonthArrow, rangedCalendars, passiveDays } = this.props;
-    const { range, link } = this.state;
-    const { styles } = this;
+    const { range, link, styles } = this.state;
 
     const classes = { ...defaultClasses, ...classNames };
     const yearsDiff = range.endDate.year() - range.startDate.year();

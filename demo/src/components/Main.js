@@ -25,7 +25,7 @@ export default class Main extends Component {
       'datePickerInternational': null,
       'firstDayOfWeek' : null,
       'predefined' : {},
-      'mobile': false
+      'mobile': true
     }
   }
 
