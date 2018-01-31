@@ -6,7 +6,12 @@ import Section from 'components/Section';
 import 'normalize.css';
 import 'styles/global'
 import styles from 'styles/main';
-import '../../../src/styles.css'
+import '../../../src/styles.css';
+
+
+const buttonComp = () => (
+  <button className="rdr-button" type="button">Übernehmen</button>
+);
 
 export default class Main extends Component {
   constructor(props, context) {
@@ -79,6 +84,8 @@ export default class Main extends Component {
             lang="de"
             rangedCalendars={true}
             calendars={this.state.mobile ? 1 : 2}
+            headerText='Bitte wählen Sie Ihren spätesten Rückflug aus.'
+            footerButton={buttonComp}
           />
         </Section>
       </main>

@@ -106,17 +106,33 @@ class DateRange extends Component {
     }
   }
 
+  rangeSelected(){
+    const { startDate, endDate } = this.state.range;
+    return !startDate.isSame(endDate);
+  }
+
   renderHeader() {
     const { startDate, endDate } = this.state.range;
-    let text = 'Bitte wählen Sie Ihren spätesten Rückflug aus.';
+    let text = this.props.headerText;
     let classNames = 'rdr-header';
-    if(!startDate.isSame(endDate)){
+    if(this.rangeSelected()){
       text = `${moment(startDate).format('dd., DD.MM.YY')} - ${moment(endDate).format('dd., DD.MM.YY')}`;
       classNames += ' rdr-selected-header';
     }
     return (
       <div className={classNames}>
         {text}
+      </div>
+    );
+  }
+
+  renderFooter(){
+    if(!this.rangeSelected()){
+      return null;
+    }
+    return (
+      <div className='rdr-footer'>
+        {this.props.footerButton()}
       </div>
     );
   }
@@ -134,7 +150,7 @@ class DateRange extends Component {
 
     return (
       <div style={onlyClasses ? undefined : { ...styles['DateRange'], ...style }} className={classes.dateRange}>
-        {this.props.showHeader && this.renderHeader()}
+        {this.props.headerText && this.renderHeader()}
         { ranges && (
           <PredefinedRanges
             format={ format }
@@ -182,6 +198,7 @@ class DateRange extends Component {
           }
           return _calendars;
         })()}
+        {this.props.footerButton && this.renderFooter()}
       </div>
     );
   }
@@ -199,7 +216,7 @@ DateRange.defaultProps = {
   rangedCalendars : true,
   twoStepChange   : true,
   passiveDays     : false,
-  showHeader      : true
+  headerText      : '',
 }
 
 DateRange.propTypes = {
@@ -223,7 +240,8 @@ DateRange.propTypes = {
   classNames      : PropTypes.object,
   rangedCalendars : PropTypes.bool,
   passiveDays     : PropTypes.bool,
-  showHeader      : PropTypes.bool,
+  headerText      : PropTypes.string,
+  footerButton    : PropTypes.func,
 }
 
 export default DateRange;

@@ -158,3 +158,16 @@
 .rdr-Day:hover:not(.is-selected) {
   background: #bdc3c7;
 }
+.rdr-footer{
+  padding: 20px;
+  text-align: center;
+  background-color: #edf0f2;
+}
+.rdr-footer button.rdr-button {
+  font-size: 16px;
+  padding: 10px 14px;
+  color: #fff;
+  background-color: #0058a3;
+  border-bottom: 4px solid #043967;
+  box-shadow: none;
+}
