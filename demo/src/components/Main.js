@@ -25,7 +25,9 @@ export default class Main extends Component {
       'datePickerInternational': null,
       'firstDayOfWeek' : null,
       'predefined' : {},
-      'mobile': true
+      'linkedCalendars': true,
+      'calendars': 2,
+      'theme': this.getTheme()
     }
   }
 
@@ -35,7 +37,44 @@ export default class Main extends Component {
     });
   }
 
+  getTheme(){
+    if( window && window.innerWidth <= 720){
+      return {
+        Calendar: {
+          width: window.innerWidth
+        }
+      }
+    }
+    return {}
+  }
+
+  handleResize(e) {
+    // if is mobile
+    if( window && window.innerWidth <= 720){
+      this.setState({
+        theme: this.getTheme(),
+        linkedCalendars: false,
+        calendars: 1,
+      });
+    } else if(!this.state.linkedCalendars) {
+      this.setState({
+        theme: this.getTheme(),
+        linkedCalendars: true,
+        calendars: 2,
+      });
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+
+ componentWillUnmount() {
+   window.removeEventListener('resize', this.handleResize.bind(this));
+ }
+
   render() {
+    console.log('res render');
     const {
         rangePicker,
         rangePickerMobile,
@@ -78,14 +117,15 @@ export default class Main extends Component {
             maxDate='05/10/2018'
             onInit={ this.handleChange.bind(this, 'rangePicker') }
             onChange={ this.handleChange.bind(this, 'rangePicker') }
-            linkedCalendars={ !this.state.mobile }
+            linkedCalendars={ this.state.linkedCalendars }
             disableDaysBeforeToday={true}
             firstDayOfWeek={1}
             lang="de"
             rangedCalendars={true}
-            calendars={this.state.mobile ? 1 : 2}
+            calendars={this.state.calendars}
             headerText='Bitte wählen Sie Ihren spätesten Rückflug aus.'
             footerButton={buttonComp}
+            theme={this.state.theme}
           />
         </Section>
       </main>
