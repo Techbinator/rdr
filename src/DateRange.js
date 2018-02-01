@@ -126,7 +126,7 @@ class DateRange extends Component {
   }
 
   renderFooter(){
-    if(!this.rangeSelected() && this.props.calendars > 1){
+    if(!this.rangeSelected()){
       return null;
     }
     return (
