@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { defaultRanges, Calendar, DateRange } from '../../../lib';
+import { DateRange } from '../../../lib';
 import Section from 'components/Section';
 
 import 'normalize.css';
@@ -25,10 +25,14 @@ export default class Main extends Component {
       'datePickerInternational': null,
       'firstDayOfWeek' : null,
       'predefined' : {},
-      'linkedCalendars': true,
-      'calendars': 2,
+      'linkedCalendars': this.isMobile(),
+      'calendars': this.isMobile() ? 1 : 2,
       'theme': this.getTheme()
     }
+  }
+
+  isMobile(){
+    return typeof window !== 'undefined' && window.innerWidth <= 720;
   }
 
   handleChange(which, payload) {
@@ -38,7 +42,7 @@ export default class Main extends Component {
   }
 
   getTheme(){
-    if( window && window.innerWidth <= 720){
+    if( this.isMobile()){
       return {
         Calendar: {
           width: window.innerWidth
@@ -50,7 +54,7 @@ export default class Main extends Component {
 
   handleResize(e) {
     // if is mobile
-    if( window && window.innerWidth <= 720){
+    if( this.isMobile()){
       this.setState({
         theme: this.getTheme(),
         linkedCalendars: false,
@@ -74,7 +78,6 @@ export default class Main extends Component {
  }
 
   render() {
-    console.log('res render');
     const {
         rangePicker,
         rangePickerMobile,
@@ -82,9 +85,9 @@ export default class Main extends Component {
         datePicker,
         firstDayOfWeek,
         predefined,
-        datePickerInternational
+        datePickerInternational,
+        calendars
     } = this.state;
-
     const format = 'dddd, D MMMM YYYY';
     return (
       <main className={styles['Main']}>
@@ -103,7 +106,6 @@ export default class Main extends Component {
               readOnly
               value={ rangePicker['endDate'] && rangePicker['endDate'].format(format).toString() }
             />
-          <button onClick={() => this.setState({mobile: !this.state.mobile})} style={{fontSize: 20, margin: 20}}>Mobile On/Off</button>
           </div>
 
 

@@ -147,9 +147,9 @@ class DateRange extends Component {
     const monthsDiff = range.endDate.month() - range.startDate.month();
     const diff = yearsDiff * 12 + monthsDiff;
     const calendarsCount = Number(calendars) - 1;
-
+    const calendarView = this.props.calendars == 1 ? ' rc-mobile' : '';
     return (
-      <div style={onlyClasses ? undefined : { ...styles['DateRange'], ...style }} className={classes.dateRange}>
+      <div style={onlyClasses ? undefined : { ...styles['DateRange'], ...style }} className={classes.dateRange + calendarView}>
         {this.props.headerText && this.renderHeader()}
         { ranges && (
           <PredefinedRanges
