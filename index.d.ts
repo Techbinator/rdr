@@ -5,7 +5,7 @@
 // TypeScript Version: 2.4
 
 import * as React from 'react';
-import * as moment from "moment-timezone";
+import * as moment from "moment";
 
 export type AnyDate = string | moment.Moment;
 export type DateFunc = (now: moment.Moment) => AnyDate;
@@ -96,6 +96,9 @@ export interface DateRangeProps extends Range, CommonCalendarProps {
 	rangedCalendars?: boolean;
 	/** default: none */
 	specialDays?: DateContainerType[];
+	disableDaysBeforeToday: boolean;
+	headerText?: string;
+	footerButton?: any;
 }
 
 export class DateRange extends React.Component<DateRangeProps> { }

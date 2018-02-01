@@ -26,6 +26,7 @@
     "url": "https://github.com/filtudo/rdr/issues"
   },
   "dependencies": {
+    "@types/moment": "^2.13.0",
     "@types/moment-timezone": "*",
     "@types/react": "*",
     "classnames": "^2.2.1",
