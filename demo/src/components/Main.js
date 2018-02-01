@@ -25,7 +25,7 @@ export default class Main extends Component {
       'datePickerInternational': null,
       'firstDayOfWeek' : null,
       'predefined' : {},
-      'linkedCalendars': this.isMobile(),
+      'linkedCalendars': !this.isMobile(),
       'calendars': this.isMobile() ? 1 : 2,
       'theme': this.getTheme()
     }

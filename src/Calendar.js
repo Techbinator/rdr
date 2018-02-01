@@ -150,7 +150,7 @@ class Calendar extends Component {
         }
         <span>
           <span className={classes.month}>{month}</span>
-          <span className={classes.monthAndYearDivider}> - </span>
+          <span className={classes.monthAndYearDivider}>  </span>
           <span className={classes.year}>{year}</span>
         </span>
         {
