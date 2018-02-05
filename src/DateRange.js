@@ -18,7 +18,7 @@ class DateRange extends Component {
 
     this.state = {
       range     : { startDate, endDate },
-      link      : linkedCalendars && endDate
+      link      : linkedCalendars && startDate
     }
 
     this.step = 0;
@@ -168,8 +168,9 @@ class DateRange extends Component {
           for (let i = calendarsCount; i >= 0; i--) {
             // const offset = offsetPositive ? i : -i;
             // const realDiff = offsetPositive ? diff : -diff;
-            // const realOffset = (rangedCalendars && i == calendarsCount && diff != 0) ? realDiff : offset;
-            const realOffset = -i;
+            // const realOffsets = (rangedCalendars && i == calendarsCount && diff != 0) ? realDiff : offset;
+
+            const realOffset = -i + 1;
 
             _calendars[_method](
               <Calendar

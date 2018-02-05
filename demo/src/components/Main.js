@@ -111,9 +111,9 @@ export default class Main extends Component {
 
 
           <DateRange
-            startDate='10/02/2018'
+            startDate='10/04/2018'
             endDate={ () => {
-              return '11/03/2018';
+              return '11/06/2018';
             }}
             minDate='05/02/2018'
             maxDate='05/10/2018'
