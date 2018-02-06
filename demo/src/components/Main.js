@@ -18,7 +18,10 @@ export default class Main extends Component {
     super(props, context);
 
     this.state = {
-      'rangePicker' : {},
+      'rangePicker' : {
+        'startDate': moment('10/02/2018', 'DD/MM/YYYY'),
+        'endDate':  moment('22/04/2018', 'DD/MM/YYYY')
+      },
       'rangePickerMobile' : {},
       'linked' : {},
       'datePicker' : null,
@@ -89,6 +92,8 @@ export default class Main extends Component {
         calendars
     } = this.state;
     const format = 'dddd, D MMMM YYYY';
+    console.log(rangePicker['startDate']);
+    console.log(rangePicker['startDate'].format('DD/MM/YYYY'));
     return (
       <main className={styles['Main']}>
 
@@ -98,25 +103,39 @@ export default class Main extends Component {
           <div style={{display: 'block'}}>
             <input
               type='text'
-              readOnly
-              value={ rangePicker['startDate'] && rangePicker['startDate'].format(format).toString() }
+              value={ rangePicker['startDate'].format('DD/MM/YYYY') }
+              onChange={(event) => {
+                event.preventDefault;
+                if(event.target.value !== undefined){
+                  console.log(event.target.value);
+                  this.setState({rangePicker:{
+                    startDate: moment(event.target.value, 'DD/MM/YYYY'),
+                    endDate: rangePicker['endDate'],
+                  }})
+                }
+              }}
             />
             <input
               type='text'
-              readOnly
-              value={ rangePicker['endDate'] && rangePicker['endDate'].format(format).toString() }
+              value={ rangePicker['endDate'].format('DD/MM/YYYY') }
+              onChange={(event) => {
+                event.preventDefault;
+                if(event.target.value !== undefined){
+                  console.log(event.target.value);
+                  this.setState({rangePicker:{
+                    startDate: rangePicker['startDate'],
+                    endDate: moment(event.target.value, 'DD/MM/YYYY')
+                  }})
+                }
+
+              }}
             />
           </div>
-
-
-
           <DateRange
-            startDate='10/04/2018'
-            endDate={ () => {
-              return '11/06/2018';
-            }}
-            minDate='05/02/2018'
-            maxDate='05/10/2018'
+            startDate={rangePicker['startDate']}
+            endDate={rangePicker['endDate'] }
+            minDate='05/01/2018'
+            maxDate='05/10/2019'
             onInit={ this.handleChange.bind(this, 'rangePicker') }
             onChange={ this.handleChange.bind(this, 'rangePicker') }
             linkedCalendars={ this.state.linkedCalendars }

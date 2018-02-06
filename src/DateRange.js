@@ -18,10 +18,11 @@ class DateRange extends Component {
 
     this.state = {
       range     : { startDate, endDate },
-      link      : linkedCalendars && startDate
+      link      : linkedCalendars && startDate,
     }
 
     this.step = 0;
+    this.initialLoad = true;
   }
 
   componentDidMount() {
@@ -49,6 +50,7 @@ class DateRange extends Component {
   }
 
   handleSelect(date, source) {
+    this.initialLoad = false;
     if (date.startDate && date.endDate) {
       this.step = 0;
       return this.setRange(date, source, true);
@@ -165,13 +167,24 @@ class DateRange extends Component {
         {(()=>{
           const _calendars = [];
           const _method = offsetPositive ? 'unshift' : 'push';
+          let realOffset = 0;
+
           for (let i = calendarsCount; i >= 0; i--) {
             // const offset = offsetPositive ? i : -i;
             // const realDiff = offsetPositive ? diff : -diff;
             // const realOffsets = (rangedCalendars && i == calendarsCount && diff != 0) ? realDiff : offset;
-
-            const realOffset = -i + 1;
-
+            // if desktop
+            if(linkedCalendars){
+              realOffset = -i + 1;
+            } else { // if mobile
+              if(this.initialLoad) { //on intial select go to the first date in range
+                const offset = offsetPositive ? i : -i;
+                const realDiff = offsetPositive ? diff : -diff;
+                realOffset = (rangedCalendars && i == calendarsCount && diff != 0) ? realDiff : offset;
+              } else {
+                realOffset = 0;
+              }
+            }
             _calendars[_method](
               <Calendar
                 showMonthArrow={ showMonthArrow }
