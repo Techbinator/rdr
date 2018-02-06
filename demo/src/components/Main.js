@@ -92,8 +92,6 @@ export default class Main extends Component {
         calendars
     } = this.state;
     const format = 'dddd, D MMMM YYYY';
-    console.log(rangePicker['startDate']);
-    console.log(rangePicker['startDate'].format('DD/MM/YYYY'));
     return (
       <main className={styles['Main']}>
 
@@ -107,7 +105,6 @@ export default class Main extends Component {
               onChange={(event) => {
                 event.preventDefault;
                 if(event.target.value !== undefined){
-                  console.log(event.target.value);
                   this.setState({rangePicker:{
                     startDate: moment(event.target.value, 'DD/MM/YYYY'),
                     endDate: rangePicker['endDate'],
@@ -121,7 +118,6 @@ export default class Main extends Component {
               onChange={(event) => {
                 event.preventDefault;
                 if(event.target.value !== undefined){
-                  console.log(event.target.value);
                   this.setState({rangePicker:{
                     startDate: rangePicker['startDate'],
                     endDate: moment(event.target.value, 'DD/MM/YYYY')
